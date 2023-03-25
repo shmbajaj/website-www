@@ -39,7 +39,7 @@ const getMemberURL = (rdsId) => `https://members.realdevsquad.com/${rdsId}`;
 
 const getMemberImgs = () => {
   const memberImgArray = [];
-  fetch('https://api.realdevsquad.com/members', {
+  fetch('http://localhost:3000/members', {
     cache: 'default',
     headers: {
       'content-type': 'application/json',
@@ -100,4 +100,25 @@ modalTriggers.forEach((trigger) => {
       bodyBlackout.classList.remove('is-blacked-out');
     });
   });
+});
+
+
+var addRoutes = function () {
+  $NB.addRoute('/books/:id', function (params) {
+      console.log('Route is ', params.Title, params.id);
+  }, 'books');
+
+  $NB.addRoute('/:category/:id', function (params) {
+      console.log('Route is ', params.Title, params.category, params.id);
+  }, 'category');
+
+  $NB.addRoute('/:category/:id/:action', function (params) {
+      console.log('Route is ', params.Title, params.category, params.id, params.action);
+  }, 'category action');
+
+}
+
+window.addEventListener('load', () => {
+  addRoutes();
+  $NB.loadController(location.pathname);
 });
